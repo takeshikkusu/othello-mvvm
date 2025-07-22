@@ -4,9 +4,10 @@ import { Cell } from './Cell';
 
 type Props = {
   vm: BoardViewModel;
+  onPlaceDisk: (x: number, y: number) => void;
 };
 
-export const Board: React.FC<Props> = ({ vm }) => {
+export const Board: React.FC<Props> = ({ vm, onPlaceDisk }) => {
   return (
     <div>
       {vm.cells.map((row, y) => (
@@ -15,9 +16,7 @@ export const Board: React.FC<Props> = ({ vm }) => {
             <Cell
               key={`${x}-${y}`}
               cell={cell}
-              onClick={() => {
-                vm.placeDisk(x, y);
-              }}
+              onClick={() => onPlaceDisk(x, y)}
             />
           ))}
         </div>
